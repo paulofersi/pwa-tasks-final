@@ -1,0 +1,16 @@
+{
+  "name": "PWA Tasks",
+  "short_name": "Tasks",
+  "description": "A PWA for managing tasks",
+  "theme_color": "#646cff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
