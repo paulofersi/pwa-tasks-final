@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid"
 import { addTask, getTasks } from './utils/db'
 import { getUserLocation, exportTasksToJson, copyTaskToClipboard, listenTaskByVoice } from './utils/native'
 import { getGoogleCalendarUrl } from './utils/calendar'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from './contexts/AuthContext'
 import { syncTasks } from './utils/sync'
 import OfflineIndicator from './components/OfflineIndicator'
@@ -32,6 +32,7 @@ import {
 
 function App() {
   const { logout } = useAuth();
+  const navigate = useNavigate();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [title, setTitle] = useState<string>("");
   const [hora, setHora] = useState<string>("");
@@ -60,6 +61,8 @@ function App() {
   async function handleLogout(): Promise<void> {
     try {
       await logout();
+      // Navigate to login page after successful logout
+      navigate('/login');
     } catch (err) {
       console.error("Erro ao fazer logout " + err);
     }

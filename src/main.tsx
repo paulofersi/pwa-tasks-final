@@ -25,7 +25,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path='/' element={<PrivateRoute><App /></PrivateRoute>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/cadastro' element={<Cadastro />}></Route>
-          <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route>
+          <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>}></Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
