@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTasks } from "../utils/db";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { shareTask } from "../utils/native";
 import { analytics } from "../utils/firebase";
@@ -43,6 +43,7 @@ async function handleShare(task: Task): Promise<void> {
 
 function Dashboard() {
     const {currentUser, logout } = useAuth();
+    const navigate = useNavigate();
     const [, setTasks] = useState<Task[]>([]);
     const [completedTasks, setCompletedTasks] = useState<Task[]>([]);
 
@@ -53,6 +54,8 @@ function Dashboard() {
             if (analytics) {
                 logEvent(analytics, 'logout_success');
             }
+            
+            navigate('/login');
         } catch (error) {
             if (analytics) {
                 logEvent(analytics, 'logout_error', {
